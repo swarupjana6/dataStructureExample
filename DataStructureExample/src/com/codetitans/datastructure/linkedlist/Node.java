@@ -3,7 +3,7 @@ package com.codetitans.datastructure.linkedlist;
 public class Node<T> {
 
 	private T data;
-	private Node<T> next;
+	private Node<T> nextNode;
 
 	public Node(T data) {
 		this.data = data;
@@ -17,12 +17,12 @@ public class Node<T> {
 		this.data = data;
 	}
 
-	public Node<T> getNext() {
-		return next;
+	public Node<T> getNextNode() {
+		return nextNode;
 	}
 
-	public void setNext(Node<T> next) {
-		this.next = next;
+	public void setNextNode(Node<T> next) {
+		this.nextNode = next;
 	}
 
 }

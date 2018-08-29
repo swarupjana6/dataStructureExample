@@ -4,7 +4,7 @@ public class RunLinkedList {
 
 	public static void runBasicLinkedList() {
 
-		BasicLinkedList<Integer> linkedList = new BasicLinkedList<>();
+		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
 
 		linkedList.push(1);
 		linkedList.push(2);

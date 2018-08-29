@@ -2,7 +2,7 @@ package com.codetitans.datastructure.linkedlist;
 
 import java.io.Serializable;
 
-public class BasicLinkedList<T extends Serializable> {
+public class SinglyLinkedList<T extends Serializable> {
 
 	private Node<T> head;
 
@@ -12,7 +12,7 @@ public class BasicLinkedList<T extends Serializable> {
 	 */
 	public void push(T data) {
 		Node<T> node = new Node<T>(data);
-		node.setNext(head);
+		node.setNextNode(head);
 
 		head = node;
 	}
@@ -29,8 +29,8 @@ public class BasicLinkedList<T extends Serializable> {
 
 		Node<T> newNode = new Node<T>(data);
 
-		newNode.setNext(prevNode.getNext());
-		prevNode.setNext(newNode);
+		newNode.setNextNode(prevNode.getNextNode());
+		prevNode.setNextNode(newNode);
 	}
 
 	/*
@@ -47,11 +47,11 @@ public class BasicLinkedList<T extends Serializable> {
 		}
 
 		Node<T> currentNode = head;
-		while (currentNode.getNext() != null) {
-			currentNode = currentNode.getNext();
+		while (currentNode.getNextNode() != null) {
+			currentNode = currentNode.getNextNode();
 		}
 
-		currentNode.setNext(newNode);
+		currentNode.setNextNode(newNode);
 	}
 
 	/* Given a key, deletes the first occurrence of key in linked list */
@@ -66,18 +66,18 @@ public class BasicLinkedList<T extends Serializable> {
 		}
 
 		if (head.getData() == key) {
-			head = currentNode.getNext();
+			head = currentNode.getNextNode();
 			return;
 		}
 
 		while (currentNode != null) {
 
 			if (currentNode.getData() == key) {
-				prevNode.setNext(currentNode.getNext());
-				currentNode = prevNode.getNext();
+				prevNode.setNextNode(currentNode.getNextNode());
+				currentNode = prevNode.getNextNode();
 			} else {
 				prevNode = currentNode;
-				currentNode = currentNode.getNext();
+				currentNode = currentNode.getNextNode();
 			}
 		}
 	}
@@ -94,20 +94,20 @@ public class BasicLinkedList<T extends Serializable> {
 		boolean positionFound = false;
 		
 		if(position == 0){
-			head = currentNode.getNext();
+			head = currentNode.getNextNode();
 		}
 		
 		while(currentNode != null){
 			
 			if(count == position){
-				prevNode.setNext(currentNode.getNext());
-				currentNode = prevNode.getNext();
+				prevNode.setNextNode(currentNode.getNextNode());
+				currentNode = prevNode.getNextNode();
 				positionFound = true;
 				break;
 			}
 			else {
 				prevNode = currentNode;
-				currentNode = currentNode.getNext();
+				currentNode = currentNode.getNextNode();
 				count++;
 			}
 		}
@@ -125,7 +125,7 @@ public class BasicLinkedList<T extends Serializable> {
 		Node<T> currentNode = head;
 		while (currentNode != null) {
 			System.out.println(currentNode.getData());
-			currentNode = currentNode.getNext();
+			currentNode = currentNode.getNextNode();
 		}
 	}
 }
