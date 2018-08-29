@@ -1,6 +1,8 @@
 package com.codetitans.datastructure.linkedlist;
 
-public class Node<T> {
+import java.io.Serializable;
+
+public class Node<T extends Serializable> {
 
 	private T data;
 	private Node<T> nextNode;

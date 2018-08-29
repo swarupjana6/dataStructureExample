@@ -29,7 +29,7 @@ public class RunLinkedList {
 		linkedList.deleteNodeAtPosition(1);
 		linkedList.printLinkedList();
 
-		/*BasicLinkedList<String> linkedList1 = new BasicLinkedList<>();
+		/*SinglyLinkedList<String> linkedList1 = new SinglyLinkedList<>();
 		linkedList1.push("a");
 		linkedList1.push("b");
 		linkedList1.push("c");
