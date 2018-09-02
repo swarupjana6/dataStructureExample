@@ -4,9 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.codetitans.datastructure.linkedlist.problem.LoopDetection;
+
 public class SinglyLinkedList<T extends Serializable> {
 
 	private Node<T> head;
+
+	public Node<T> getHeadNode() {
+		return head;
+	}
+	
+	public SinglyLinkedList() {
+	}
+	
+	public SinglyLinkedList(Node<T> head) {
+		this.head = head;
+	}
 
 	/*
 	 * This function is in LinkedList class. Inserts a new Node at front of the
@@ -238,6 +251,11 @@ public class SinglyLinkedList<T extends Serializable> {
 	}
 
 	public void printLinkedList() {
+		
+		LoopDetection<T> loopDetection = new LoopDetection<>();
+		if(loopDetection.detectLoopHashTechnique(head)){
+			throw new UnsupportedOperationException("provided LinkedList detected with loop.");
+		}
 		System.out.println("LinkedList Count :- " + getCount());
 		if (head == null) {
 			System.out.println("List is empty");
