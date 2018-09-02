@@ -85,17 +85,24 @@ public class RunLinkedList {
 		linkedList.push(7);
 		linkedList.push(8);
 
-		System.out.println("LinkedList[ " + linkedList + "] contain loop :- "
+		System.out.println("LinkedList[ " + linkedList + "] contain loop using Hashing Technique:- "
 				+ loopDetectionLinkedList.detectLoopHashTechnique(linkedList.getHeadNode()));
+		System.out.println("LinkedList[ " + linkedList + "] contain loop using Mark Visit Technique:- "
+				+ loopDetectionLinkedList.detectLoopUsingMarkVisitNode(linkedList.getHeadNode()));
 		SinglyLinkedList<Integer> loopLinkedList = loopDetectionLinkedList.createSimpleLoopLinkedList(linkedList);
 		// no require to print as operation will never come out of loop as
 		// linkedlist contain loop. As of now if try to print looplinkedlist
 		// then it will throw error. In later part function will write to handle
 		// to print the loop.
 		// loopLinkedList.printLinkedList();
-		System.out.println("LinkedList[ " + loopLinkedList + "] contain loop :- "
+		System.out.println("LinkedList[ " + loopLinkedList + "] contain loop using Hashing Technique:- "
 				+ loopDetectionLinkedList.detectLoopHashTechnique(loopLinkedList.getHeadNode()));
+		/*System.out.println("LinkedList[ " + loopLinkedList + "] contain loop using Mark Visit Technique:- "
+				+ loopDetectionLinkedList.detectLoopUsingMarkVisitNode(loopLinkedList.getHeadNode()));*/
 
+		
+		
+		
 	}
 
 	public static void main(String[] args) {
