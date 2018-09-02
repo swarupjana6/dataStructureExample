@@ -1,6 +1,8 @@
 package com.codetitans.datastructure.linkedlist;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SinglyLinkedList<T extends Serializable> {
 
@@ -116,8 +118,67 @@ public class SinglyLinkedList<T extends Serializable> {
 			System.out.println("LinkedList element count is less than the position provided.");
 		}
 	}
+	
+	//Checks whether the value x is present in linked list
+	public boolean searchElement(T data){
+		
+		boolean found = false;
+		Node<T> currentNode = head;
+		
+		if(currentNode == null){
+			return found;
+		}
+		
+		while(currentNode != null){
+			
+			if(currentNode.getData().equals(data)){
+				found = true;
+				break;
+			}
+			
+			currentNode = currentNode.getNextNode();
+		}
+		
+		return found;
+	}
+	
+	/* Takes index as argument and return data at index*/
+	public List<Integer> searchNodePosition(T key){
+		List<Integer> position = new ArrayList<>();
+		Node<T> currentNode = head;
+		int count = 0;
+		
+		if(currentNode == null){
+			return position;
+		}
+		
+		while(currentNode != null){
+			
+			if(currentNode.getData().equals(key)){
+				position.add(count);
+			}
+			count++;
+			currentNode = currentNode.getNextNode();
+		}
+		
+		return position;
+	}
+	
+	public int getCount(){
+		
+		int count = 0;
+		Node<T> currentNode = head;
+		
+		while(currentNode != null){
+			count++;
+			currentNode = currentNode.getNextNode();
+		}
+		
+		return count ;
+	}
 
 	public void printLinkedList() {
+		System.out.println("LinkedList Count :- " + getCount());
 		if (head == null) {
 			System.out.println("List is empty");
 		}
