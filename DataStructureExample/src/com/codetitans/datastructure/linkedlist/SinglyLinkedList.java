@@ -57,7 +57,7 @@ public class SinglyLinkedList<T extends Serializable> {
 	}
 
 	/* Given a key, deletes the first occurrence of key in linked list */
-	void deleteNode(T key) {
+	public void deleteNode(T key) {
 
 		Node<T> currentNode = head;
 		Node<T> prevNode = null;
@@ -94,87 +94,147 @@ public class SinglyLinkedList<T extends Serializable> {
 		Node<T> prevNode = null;
 		int count = 0;
 		boolean positionFound = false;
-		
-		if(position == 0){
+
+		if (position == 0) {
 			head = currentNode.getNextNode();
 		}
-		
-		while(currentNode != null){
-			
-			if(count == position){
+
+		while (currentNode != null) {
+
+			if (count == position) {
 				prevNode.setNextNode(currentNode.getNextNode());
 				currentNode = prevNode.getNextNode();
 				positionFound = true;
 				break;
-			}
-			else {
+			} else {
 				prevNode = currentNode;
 				currentNode = currentNode.getNextNode();
 				count++;
 			}
 		}
-		
-		if(!positionFound){
+
+		if (!positionFound) {
 			System.out.println("LinkedList element count is less than the position provided.");
 		}
 	}
-	
-	//Checks whether the value x is present in linked list
-	public boolean searchElement(T data){
-		
+
+	// Checks whether the value x is present in linked list
+	public boolean searchElement(T data) {
+
 		boolean found = false;
 		Node<T> currentNode = head;
-		
-		if(currentNode == null){
+
+		if (currentNode == null) {
 			return found;
 		}
-		
-		while(currentNode != null){
-			
-			if(currentNode.getData().equals(data)){
+
+		while (currentNode != null) {
+
+			if (currentNode.getData().equals(data)) {
 				found = true;
 				break;
 			}
-			
+
 			currentNode = currentNode.getNextNode();
 		}
-		
+
 		return found;
 	}
-	
-	/* Takes index as argument and return data at index*/
-	public List<Integer> searchNodePosition(T key){
+
+	/* Takes index as argument and return data at index */
+	public List<Integer> searchNodePosition(T key) {
 		List<Integer> position = new ArrayList<>();
 		Node<T> currentNode = head;
 		int count = 0;
-		
-		if(currentNode == null){
+
+		if (currentNode == null) {
 			return position;
 		}
-		
-		while(currentNode != null){
-			
-			if(currentNode.getData().equals(key)){
+
+		while (currentNode != null) {
+
+			if (currentNode.getData().equals(key)) {
 				position.add(count);
 			}
 			count++;
 			currentNode = currentNode.getNextNode();
 		}
-		
+
 		return position;
 	}
-	
-	public int getCount(){
-		
-		int count = 0;
+
+	/* Function to get the nth node from the last of a linked list */
+	public T searchNodeValueFromEnd(int position) throws Exception {
+
+		if (head == null) {
+			throw new Exception("LinkedList is empty");
+		}
+		int positionToFind = getCount() - position;
 		Node<T> currentNode = head;
+
+		if (positionToFind < 0) {
+			throw new Exception("Position provided is out of Bound");
+		}
+		for (int index = 0; index < positionToFind; index++) {
+			currentNode = currentNode.getNextNode();
+		}
+
+		return currentNode.getData();
+	}
+
+	//Find the the mid element by traversing two node variable
+	public T findMiddleElement() throws Exception {
+		Node<T> firstPtr = head;
+		Node<T> secondPtr = head;
+
+		if (head == null) {
+			throw new Exception("LinkedList is empty");
+		}
+
+		while (secondPtr != null && secondPtr.getNextNode() != null) {
+			firstPtr = firstPtr.getNextNode();
+			secondPtr = secondPtr.getNextNode().getNextNode();
+		}
+
+		if (secondPtr == null) {
+			System.out.println("Provided LinkedList is having Even count");
+		} else {
+			System.out.println("Provided LinkedList is having Odd count");
+		}
+		return firstPtr.getData();
+	}
+	
+	//Find the middle element using count
+	public T findMiddleElementUsingCount(){
+		
+		Node<T> currentNode = head;
+		Node<T> midNode = currentNode;
+		int count = 0;
 		
 		while(currentNode != null){
+			
+			count++;
+			if(count % 2 == 0){
+				midNode = midNode.getNextNode();
+			}
+			currentNode = currentNode.getNextNode();
+			
+		}
+		
+		return midNode.getData();
+	}
+
+	public int getCount() {
+
+		int count = 0;
+		Node<T> currentNode = head;
+
+		while (currentNode != null) {
 			count++;
 			currentNode = currentNode.getNextNode();
 		}
-		
-		return count ;
+
+		return count;
 	}
 
 	public void printLinkedList() {
