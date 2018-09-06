@@ -107,7 +107,13 @@ public class RunLinkedList {
 		
 		
 		//Remove Loop
+		System.out.println("Remove the loop using method 1 Floyd Alog 1");
 		loopDetectionLinkedList.removeLoopUsingFloydAlgo(loopLinkedList.getHeadNode());
+		System.out.println();
+		System.out.println("Remove the loop using method 2 Floyd Alog 2");
+		loopLinkedList = loopDetectionLinkedList.createSimpleLoopLinkedList(linkedList);
+		loopDetectionLinkedList.removeLoopUsingFloydAlgo(loopLinkedList.getHeadNode());
+		System.out.println();
 		
 	}
 

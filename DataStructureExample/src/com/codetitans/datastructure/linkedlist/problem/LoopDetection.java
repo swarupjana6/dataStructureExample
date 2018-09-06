@@ -138,14 +138,21 @@ public class LoopDetection<T extends Serializable> {
 
 		Node<T> firstPtr = node;
 		Node<T> secondPtr = node;
+		boolean loopFound = false;
 
 		while (secondPtr != null && secondPtr.getNextNode() != null) {
 
 			firstPtr = firstPtr.getNextNode();
 			secondPtr = secondPtr.getNextNode().getNextNode();
 			if (firstPtr == secondPtr) {
+				loopFound = true;
 				break;
 			}
+		}
+		
+		if(!loopFound){
+			System.out.println("Input LinkedList does not have loop");
+			return node;
 		}
 
 		Node<T> current = node;
@@ -183,6 +190,88 @@ public class LoopDetection<T extends Serializable> {
 
 		return node;
 	}
+	
+	/**
+	 * Method 2 (Better Solution) 
+	 * This method is also dependent on Floyd’s Cycle
+	 * detection algorithm. 
+	 * 1) Detect Loop using Floyd’s Cycle detection algo
+	 * and get the pointer to a loop node. 
+	 * 2) Count the number of nodes in loop.
+	 * Let the count be k. 
+	 * 3) Fix one pointer to the head and another to kth
+	 * node from head. 
+	 * 4) Move both pointers at the same pace, they will meet at
+	 * loop starting node. 
+	 * 5) Get pointer to the last node of loop and make next
+	 * of it as NULL.
+	 */
+	public Node<T> removeLoopUsingFlyodAlgo2(Node<T> node){
+		
+		Node<T> firstPtr = node;
+		Node<T> secondPtr = node;
+		boolean loopFound = false;
+		
+		while(secondPtr != null && secondPtr.getNextNode() != null){
+			firstPtr = firstPtr.getNextNode();
+			secondPtr = secondPtr.getNextNode().getNextNode();
+			
+			if(firstPtr == secondPtr){
+				loopFound = true;
+				break;
+			}
+		}
+		
+		if(loopFound){
+			System.out.println("Input LinkedList does not have loop");
+			return node;
+		}
+		
+		Node<T> head = node;
+		
+		//Step 2: since at this step we know linkedlist has loop then use above variable
+		//firstPtr and SecondPtr to found end of the loop
+		secondPtr = firstPtr;
+		int loopCount = 0;
+		
+		//find the loop node count
+		while(firstPtr != secondPtr.getNextNode()){
+			loopCount++;
+			secondPtr = secondPtr.getNextNode();
+		}
+		
+		//make 1 pointer to start of the node
+		firstPtr = head;
+		
+		//make 2nd pointer to place at position equal to loop count.
+		secondPtr = head;
+		for (int index = 0; index < loopCount; index++) {
+			secondPtr = secondPtr.getNextNode();
+		}
+		
+		
+		//Now move both the pointer at 1 node per step till 
+		//secondPtr next node and first pointer match
+		while(secondPtr.getNextNode() != firstPtr){
+			firstPtr = firstPtr.getNextNode();
+			secondPtr = secondPtr.getNextNode();
+		}
+		
+		
+		// SecondPtr is at the end of the node and next pointer
+		//is the starting point of the loop. 
+		//So break the loop by null the next node.
+		secondPtr.setNextNode(null);
+		
+		while (node != null) {
+			System.out.print(node.getData() + " ");
+			node = node.getNextNode();
+		}
+		
+		return node;
+	}
+	
+	
 
 	public SinglyLinkedList<T> createSimpleLoopLinkedList(SinglyLinkedList<T> simpleLinkedList) {
 
