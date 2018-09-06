@@ -101,7 +101,13 @@ public class RunLinkedList {
 				+ loopDetectionLinkedList.detectLoopUsingMarkVisitNode(loopLinkedList.getHeadNode()));*/
 
 		
+		//Find the Length of Loop node.
+//		loopLinkedList.printLinkedList();
+		System.out.println("Length of Loop Node :- " + loopDetectionLinkedList.countLoopNode(loopLinkedList.getHeadNode()));
 		
+		
+		//Remove Loop
+		loopDetectionLinkedList.removeLoopUsingFloydAlgo(loopLinkedList.getHeadNode());
 		
 	}
 
