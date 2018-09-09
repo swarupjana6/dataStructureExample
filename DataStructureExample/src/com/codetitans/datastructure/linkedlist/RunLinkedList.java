@@ -1,6 +1,7 @@
 package com.codetitans.datastructure.linkedlist;
 
 import com.codetitans.datastructure.linkedlist.problem.LoopDetection;
+import com.codetitans.datastructure.linkedlist.problem.Palindrome;
 
 public class RunLinkedList {
 
@@ -114,13 +115,32 @@ public class RunLinkedList {
 		loopLinkedList = loopDetectionLinkedList.createSimpleLoopLinkedList(linkedList);
 		loopDetectionLinkedList.removeLoopUsingFloydAlgo(loopLinkedList.getHeadNode());
 		System.out.println();
+		System.out.println("Remove the loop using method 3");
+		loopLinkedList = loopDetectionLinkedList.createSimpleLoopLinkedList(linkedList);
+		loopDetectionLinkedList.removeLoopMethod3(loopLinkedList.getHeadNode());
+		System.out.println();
 		
+	}
+	
+	private static void runPalidromeTest() {
+
+		String palidromeString = "abacaba";
+		SinglyLinkedList<Character> linkedList = new SinglyLinkedList<>();
+		Palindrome<Character> palindrome = new Palindrome<>();
+		
+		for (int index = 0; index < palidromeString.length(); index++) {
+			char word = palidromeString.charAt(index);
+			linkedList.push(word);
+		}
+		
+		System.out.println("The word " + palidromeString + " is palidrome : - " + palindrome.isPalindrome(linkedList.getHeadNode()));
 	}
 
 	public static void main(String[] args) {
 
 		runBasicLinkedList();
 		runDetectLoopLinkedList();
+		runPalidromeTest();
 	}
 
 }
