@@ -2,6 +2,7 @@ package com.codetitans.datastructure.linkedlist;
 
 import com.codetitans.datastructure.linkedlist.problem.LoopDetection;
 import com.codetitans.datastructure.linkedlist.problem.Palindrome;
+import com.codetitans.datastructure.linkedlist.problem.SwapElement;
 
 public class RunLinkedList {
 
@@ -135,12 +136,38 @@ public class RunLinkedList {
 		
 		System.out.println("The word " + palidromeString + " is palidrome : - " + palindrome.isPalindrome(linkedList.getHeadNode()));
 	}
+	
+	private static void swapLinkedListElemet() {
+		
+		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+		SwapElement<Integer> swapEle = new SwapElement<>();
+		int x = 12, y = 20;
+		
+		linkedList.push(10);
+		linkedList.push(15);
+		linkedList.push(12);
+		linkedList.push(26);
+		linkedList.push(5);
+		linkedList.push(50);
+		linkedList.push(20);
+		linkedList.push(17);
+		linkedList.push(32);
+		
+		System.out.println("Original List element position :- ");
+		linkedList.printLinkedList();
+		
+		swapEle.swapElement(linkedList.getHeadNode(), x, y);
+		
+		System.out.println("Swapped List element position for " + x +" & " + y + " :- ");
+		linkedList.printLinkedList();
+	}
 
 	public static void main(String[] args) {
 
 		runBasicLinkedList();
 		runDetectLoopLinkedList();
 		runPalidromeTest();
+		swapLinkedListElemet();
 	}
 
 }
