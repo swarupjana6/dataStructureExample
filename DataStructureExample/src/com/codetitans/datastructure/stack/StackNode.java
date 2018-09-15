@@ -4,48 +4,63 @@ import java.io.Serializable;
 
 import com.codetitans.datastructure.linkedlist.Node;
 
+/**
+ * Stack using linkedlist.
+ * 
+ * Pros: 
+ * The linked list implementation of stack can grow and shrink according
+ * to the needs at runtime. 
+ * 
+ * Cons: 
+ * Requires extra memory due to involvement of
+ * pointers.
+ * 
+ * @author Swarupkumar
+ *
+ * @param <T>
+ */
 public class StackNode<T extends Serializable> {
 
 	Node<T> root = null;
-	
-	public boolean isEmpty(){
-		
+
+	public boolean isEmpty() {
+
 		return root == null;
 	}
-	
-	public void push(T data){
-		
+
+	public void push(T data) {
+
 		Node<T> node = new Node<>(data);
-		
+
 		node.setNextNode(root);
 		root = node;
-		
+
 	}
-	
-	public T pop() throws Exception{
-		
-		if(isEmpty()){
+
+	public T pop() throws Exception {
+
+		if (isEmpty()) {
 			System.out.println("Stack underflow");
 			throw new Exception("Stack underflow");
 		}
 		Node<T> node = root;
 		root = root.getNextNode();
-		
+
 		return node.getData();
 	}
-	
+
 	public T peek() throws Exception {
-		
-		if(isEmpty()){
+
+		if (isEmpty()) {
 			System.out.println("Stack underflow");
 			throw new Exception("Stack underflow");
 		}
-		
+
 		return root.getData();
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 		StackNode<Integer> s = new StackNode<>();
 
 		try {
